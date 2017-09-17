@@ -1,28 +1,17 @@
-<!doctype html>
-<html>
+{% extends 'blog/base.html' %}
 
-  <head>
-    <title>BBchu On the Run</title>
-  </head>
+{% block content %}
 
-  <body>
+  {% for post in posts %}
 
     <div>
-      <h1><a href="/">Django Girls Blog</a></h1>
+
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+        <p>published: {{ post.published_date }}</p>
+
     </div>
 
-    {% for post in posts %}
+  {% endfor %}
 
-      <div>
-
-          <h2><a href="">{{ post.title }}</a></h2>
-          <p>{{ post.text|linebreaksbr }}</p>
-          <p>published: {{ post.published_date }}</p>
-
-      </div>
-
-    {% endfor %}
-
-  </body>
-
-</html>
+{% endblock %}
